@@ -13,7 +13,7 @@ botonDesencriptar.addEventListener("click",function(event){
 botonCopiar.addEventListener("click",function(event){
         event.preventDefault()});
 
-/*Constante 'const' evita reasignar las variables */   
+/*Constante 'const' evita reasignar las variables. */   
 const inputTexto = document.querySelector("#frase");
 const inputFrase = document.querySelector("#frase2");          
 
