@@ -73,7 +73,6 @@ botonCopiar.onclick = copiar;
         var frase = document.querySelector("input");
 
         /*crear el for():
-        
         for(var (); frase.lenght) {}
         */ 
 
@@ -85,12 +84,9 @@ botonCopiar.onclick = copiar;
         
         else {
             alert("letra en minusculas");
+            inputTexto.value;
         }
     } 
    var frase =  document.querySelector("frase");
    frase.onclick = validar;
 
-
-
-
-  
