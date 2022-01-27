@@ -4,89 +4,79 @@ var botonDesencriptar = document.querySelector("#boton-desencriptar");
 
 var botonCopiar = document.querySelector("#boton-copiar");
 
-botonEncriptar.addEventListener("click",function(event){
-        event.preventDefault()});
-
-botonDesencriptar.addEventListener("click",function(event){
-        event.preventDefault()});
-
-botonCopiar.addEventListener("click",function(event){
-        event.preventDefault()});
-
-/*Constante 'const' evita reasignar las variables. */   
+/*Constante 'const' evita reasignar las variables */
 const inputTexto = document.querySelector("#frase");
-const inputFrase = document.querySelector("#frase2");          
+const inputFrase = document.querySelector("#frase2");
 
-function encriptar (){
+function validar(frase) {
     
-    var frase = inputTexto.value;
-    inputTexto.focus();
-    var fraseEncriptada = frase
+    var buscar = /^[a-z ]+$/g;
+    frase = document.querySelector("#frase").value;
 
-    .replace(/e/g, "enter")
-    .replace(/i/g, "imes")
-    .replace(/a/g, "ai")
-    .replace(/o/g, "ober")
-    .replace(/u/g, "ufat");
-    inputFrase.value = fraseEncriptada;
-    inputTexto.value = "";
-    inputTexto.focus();  
+    if (frase.match(buscar)) {
+        /*recorre cada letra de la frase ingresada y valida que sea minúscula*/
+        
+    } else {
+        alert("Sólo letras en minúsculas, sin números ni caracteres especiales");
+        inputTexto.value = "";
+    }
 }
 
-function desencriptar (){
-   
-    var fraseEncriptada = inputTexto.value;
-    inputTexto.focus();
-    var frase = fraseEncriptada
-    .replace(/enter/g, "e")
-    .replace(/imes/g, "i")
-    .replace(/ai/g, "a")
-    .replace(/ober/g, "o")
-    .replace(/ufat/g, "u");
+function encriptar() {
+    validar();
+    var frase = inputTexto.value;
+    var fraseEncriptada = frase
 
-    inputFrase.value = frase;
+        .replace(/e/g, "enter")
+        .replace(/i/g, "imes")
+        .replace(/a/g, "ai")
+        .replace(/o/g, "ober")
+        .replace(/u/g, "ufat");
+    inputFrase.value = fraseEncriptada;
+    inputTexto.value = "";
+    inputTexto.focus();
+}
+
+function desencriptar() {
+    validar();
+    var frase = inputTexto.value;
+    var fraseDesencriptada = frase
+        .replace(/enter/g, "e")
+        .replace(/imes/g, "i")
+        .replace(/ai/g, "a")
+        .replace(/ober/g, "o")
+        .replace(/ufat/g, "u");
+
+    inputFrase.value = fraseDesencriptada;
     inputTexto.value = "";
     inputTexto.focus();
 }
 
 /* crear la funcion copiar texto con el ClipboardEvent()*/
 
-function copiar () {
-    
+function copiar() {
+
     var fraseEncriptada = document.getElementById("frase2");
-   
+
     navigator.clipboard.writeText(fraseEncriptada.value);
-  
- alert("Frase copiada: " + fraseEncriptada.value);
+
+    alert("Frase copiada: " + fraseEncriptada.value);
 
 }
 
-botonEncriptar.onclick = encriptar;
-botonDesencriptar.onclick = desencriptar;
-botonCopiar.onclick = copiar;
-   
+var frase = document.querySelector("frase");
 
-/*Metodo de Validacion de letras mayusculas y acentos */     
+botonEncriptar.addEventListener("click", function(event) {
+    event.preventDefault();
+    encriptar();
+});
 
- function validar(frase) {
-        var letra = "abcdefghijklmnñopqrstuvwxyz ";
-        var frase = document.querySelector("input");
+botonDesencriptar.addEventListener("click", function(event) {
+    event.preventDefault();
+    desencriptar();
+});
 
-        /*crear el for():
-        for(var (); frase.lenght) {}
-        */ 
-
-        if (frase.value) {
-            /*si esta en letras minusculas, y hay que recorrer cada letra: mejorar codigo*/
-            letra.toLowerCase = true;
-           return (fraseEncriptada); 
-        }
-        
-        else {
-            alert("letra en minusculas");
-            inputTexto.value;
-        }
-    } 
-   var frase =  document.querySelector("frase");
-   frase.onclick = validar;
-
+botonCopiar.addEventListener("click", function(event) {
+    event.preventDefault();
+    copiar();
+});
